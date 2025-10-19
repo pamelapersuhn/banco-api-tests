@@ -1,0 +1,196 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-10-18T01:56:35.446Z",
+    "end": "2025-10-18T01:56:35.835Z",
+    "duration": 389,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "204534a9-fba7-402d-8911-5a1249ccc8ac",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "665252b5-10ef-40c8-bcb4-117c14a6c8b8",
+          "title": "Login",
+          "fullFile": "C:\\PamMentoria\\Projetos\\banco-api-tests\\test\\login.test.js",
+          "file": "\\test\\login.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "fa0dc0c4-4433-4c4c-9173-a446e707f57e",
+              "title": "POST /Login",
+              "fullFile": "C:\\PamMentoria\\Projetos\\banco-api-tests\\test\\login.test.js",
+              "file": "\\test\\login.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar 200 com token em string quando usar credenciais validas!",
+                  "fullTitle": "Login POST /Login Deve retornar 200 com token em string quando usar credenciais validas!",
+                  "timedOut": false,
+                  "duration": 179,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const resposta = await request('http://localhost:3000')\n    .post('/login')\n    .set('Content-Type','application/json')\n    .send({\n        \"username\": 'julio.lima',\n        \"senha\": '123456'\n        })\n\nexpect(resposta.status).to.equal(200);\nexpect(resposta.body.token).to.be.a('string');",
+                  "err": {},
+                  "uuid": "a43f2cc4-e364-4a93-96aa-7537f71cc85c",
+                  "parentUUID": "fa0dc0c4-4433-4c4c-9173-a446e707f57e",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "a43f2cc4-e364-4a93-96aa-7537f71cc85c"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 179,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 200000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 200000
+        },
+        {
+          "uuid": "83888761-e9d7-42d3-a9da-009dbf63cf1f",
+          "title": "Transferencias",
+          "fullFile": "C:\\PamMentoria\\Projetos\\banco-api-tests\\test\\transferencia.test.js",
+          "file": "\\test\\transferencia.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "5bf4d2d0-c284-43d3-b5a6-46b7b2b26637",
+              "title": "POST/Transferencias",
+              "fullFile": "C:\\PamMentoria\\Projetos\\banco-api-tests\\test\\transferencia.test.js",
+              "file": "\\test\\transferencia.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar sucesso com 201 quando o valor da transferencia for igual ou acima de 10,00 reais",
+                  "fullTitle": "Transferencias POST/Transferencias Deve retornar sucesso com 201 quando o valor da transferencia for igual ou acima de 10,00 reais",
+                  "timedOut": false,
+                  "duration": 124,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "//capturar o token\nconst respostaLogin = await request('http://localhost:3000')\n    .post('/login')\n    .set('Content-Type','application/json')\n    .send({\n        \"username\": 'julio.lima',\n        \"senha\": '123456'\n        })\nconst token = respostaLogin.body.token\nconst resposta = await request('http://localhost:3000')\n    .post('/transferencias')\n    .set('Content-Type','application/json')\n    .set('Authorization','Bearer '+ token)\n    .send({\n        contaOrigem: 3,\n        contaDestino: 4,\n        valor: 15,\n        token: \"\"\n        })\n        expect(resposta.status).to.equal(201);\n        console.log(resposta.body)",
+                  "err": {},
+                  "uuid": "495904b0-9c42-45d2-ab32-b6633619d492",
+                  "parentUUID": "5bf4d2d0-c284-43d3-b5a6-46b7b2b26637",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar 422 quando o valor da transferencia for abaixo de 10,00 reais",
+                  "fullTitle": "Transferencias POST/Transferencias Deve retornar 422 quando o valor da transferencia for abaixo de 10,00 reais",
+                  "timedOut": false,
+                  "duration": 36,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "//capturar o token\nconst respostaLogin = await request('http://localhost:3000')\n    .post('/login')\n    .set('Content-Type','application/json')\n    .send({\n        \"username\": 'julio.lima',\n        \"senha\": '123456'\n        })\nconst token = respostaLogin.body.token\nconst resposta = await request('http://localhost:3000')\n    .post('/transferencias')\n    .set('Content-Type','application/json')\n    .set('Authorization','Bearer '+ token)\n    .send({\n        contaOrigem: 3,\n        contaDestino: 4,\n        valor: 9,\n        token: \"\"\n        })\n        expect(resposta.status).to.equal(422);\n        console.log(resposta.body)",
+                  "err": {},
+                  "uuid": "19c9d4c7-10da-414f-8920-c22031fef723",
+                  "parentUUID": "5bf4d2d0-c284-43d3-b5a6-46b7b2b26637",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "495904b0-9c42-45d2-ab32-b6633619d492",
+                "19c9d4c7-10da-414f-8920-c22031fef723"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 160,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 200000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 200000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 200000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.4"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.0"
+    }
+  }
+}
